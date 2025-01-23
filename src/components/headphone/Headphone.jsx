@@ -1,29 +1,20 @@
-import { Counter } from "../counter/Counter";
+import { Codecs } from "../codecs/codecs";
+import { Counter } from "../counter/counter";
+import { Reviews } from "../reviews/reviews";
 
-export const Headphone = ({ headphone }) => {
-  const { name, reviews, codecs } = headphone;
-
+export const Headphone = ({ name, brand, reviews, codecs }) => {
   if (!name) {
     return null;
   }
 
   return (
-    <div>
+    <section>
       <h2>{name}</h2>
-      {Boolean(reviews.length) && (
-        <>
-          <h3>Reviews</h3>
-          {reviews.map((text) => (
-            <span key={text}>{text}</span>
-          ))}
-        </>
-      )}
-      <h3>Codecs</h3>
-      {codecs.map((codec) => (
-        <span key={codec}>{codec}</span>
-      ))}
-
+      <h3>Brand</h3>
+      <div>{brand}</div>
+      {reviews.length ? <Reviews reviews={reviews} /> : <div>empty review</div>}
+      {codecs.length ? <Codecs codecs={codecs} /> : <div>empty codecs</div>}
       <Counter />
-    </div>
+    </section>
   );
 };
