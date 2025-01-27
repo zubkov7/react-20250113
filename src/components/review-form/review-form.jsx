@@ -7,23 +7,26 @@ export const ReviewForm = () => {
   const { text, rating } = form;
 
   return (
-    <form onSubmit={(e) => e.preventDefault()}>
-      <div>
-        <span>Text</span>
-        <input
-          type='text'
-          value={text}
-          onChange={(event) => setText(event.target.value)}
+    <>
+      <h3>Review Form</h3>
+      <form onSubmit={(e) => e.preventDefault()}>
+        <div>
+          <span>Text</span>
+          <input
+            type='text'
+            value={text}
+            onChange={(event) => setText(event.target.value)}
+          />
+        </div>
+
+        <Counter
+          value={rating}
+          decrement={decrementRating}
+          increment={incrementRating}
         />
-      </div>
 
-      <Counter
-        value={rating}
-        decrement={decrementRating}
-        increment={incrementRating}
-      />
-
-      <button onClick={clear}>clear</button>
-    </form>
+        <button onClick={clear}>clear</button>
+      </form>
+    </>
   );
 };
