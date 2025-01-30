@@ -1,5 +1,8 @@
+import { Button } from "../button/button";
 import { Counter } from "../counter/counter";
 import { useForm } from "./use-form";
+
+import styles from "./review-form.module.css";
 
 export const ReviewForm = () => {
   const { form, setText, incrementRating, decrementRating, clear } = useForm();
@@ -9,7 +12,7 @@ export const ReviewForm = () => {
   return (
     <>
       <h3>Review Form</h3>
-      <form onSubmit={(e) => e.preventDefault()}>
+      <form className={styles.form} onSubmit={(e) => e.preventDefault()}>
         <div>
           <span>Text</span>
           <input
@@ -25,7 +28,7 @@ export const ReviewForm = () => {
           increment={incrementRating}
         />
 
-        <button onClick={clear}>clear</button>
+        <Button title='Clear' onClick={clear} />
       </form>
     </>
   );

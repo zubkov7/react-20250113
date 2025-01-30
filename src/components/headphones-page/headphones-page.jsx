@@ -2,6 +2,8 @@ import { useState } from "react";
 import { headphones } from "../../constants/mock";
 import { Headphone } from "../headphone/headphone";
 import { Tab } from "../tab/tab";
+import { Button } from "../button/button";
+import { Tabs } from "../tabs/tabs";
 
 export const HeadphonesPage = ({ title }) => {
   const [activeHeadphoneId, setActiveHeadphoneId] = useState(headphones[0].id);
@@ -18,16 +20,18 @@ export const HeadphonesPage = ({ title }) => {
 
   return (
     <div>
-      <h1>{title}</h1>
+      <h1>Headphones Page</h1>
 
-      {headphones.map(({ name, id }) => (
-        <Tab
-          key={id}
-          title={name}
-          onClick={() => handleSetActiveHeadphoneId(id)}
-          isActive={id === activeHeadphoneId}
-        />
-      ))}
+      <Tabs>
+        {headphones.map(({ name, id }) => (
+          <Button
+            key={id}
+            title={name}
+            onClick={() => handleSetActiveHeadphoneId(id)}
+            disabled={id === activeHeadphoneId}
+          />
+        ))}
+      </Tabs>
 
       {activeHeadphone && (
         <Headphone

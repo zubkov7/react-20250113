@@ -1,22 +1,12 @@
-import classNames from "classnames";
 import styles from "./counter.module.scss";
+import { Button } from "../button/button";
 
-// size : 'xl' | 'l'
-
-export const Counter = ({ value, increment, decrement, size = "xl" }) => {
+export const Counter = ({ value, increment, decrement }) => {
   return (
     <div>
-      <button
-        className={classNames(styles.button, size === "xl" && styles.xl, {
-          [styles.xl]: size === "xl",
-        })}
-        style={{ width: size }}
-        onClick={increment}
-      >
-        +
-      </button>
-      {value}
-      <button onClick={decrement}>-</button>
+      <Button title='+' onClick={increment} size='400' />
+      <span className={styles.count}>{value}</span>
+      <Button title='-' onClick={decrement} size='400' />
     </div>
   );
 };
