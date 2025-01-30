@@ -1,11 +1,10 @@
 import { useState } from "react";
 import { headphones } from "../../constants/mock";
 import { Headphone } from "../headphone/headphone";
-import { Tab } from "../tab/tab";
 import { Button } from "../button/button";
 import { Tabs } from "../tabs/tabs";
 
-export const HeadphonesPage = ({ title }) => {
+export const HeadphonesPage = () => {
   const [activeHeadphoneId, setActiveHeadphoneId] = useState(headphones[0].id);
 
   const activeHeadphone = headphones.find(({ id }) => id === activeHeadphoneId);
@@ -35,6 +34,7 @@ export const HeadphonesPage = ({ title }) => {
 
       {activeHeadphone && (
         <Headphone
+          key={activeHeadphone.id}
           name={activeHeadphone.name}
           brand={activeHeadphone.brand}
           reviews={activeHeadphone.reviews}

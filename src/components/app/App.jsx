@@ -3,11 +3,14 @@ import { Layout } from "../layout/layout";
 
 import "./reset.css";
 import "./app.css";
+import { ThemeContextProvider } from "../theme-context/theme-context";
 
 export const App = () => {
   return (
-    <Layout>
-      <HeadphonesPage />
-    </Layout>
+    <ThemeContextProvider>
+      <Layout>
+        <HeadphonesPage />
+      </Layout>
+    </ThemeContextProvider>
   );
 };
