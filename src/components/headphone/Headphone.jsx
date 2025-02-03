@@ -5,7 +5,7 @@ import { HeadphoneCounter } from "../headphone-counter/headphone-counter";
 import { use } from "react";
 import { AuthContext } from "../auth-context";
 
-export const Headphone = ({ name, brand, reviews, codecs }) => {
+export const Headphone = ({ name, brand, reviewsIds, codecsIds }) => {
   const { auth } = use(AuthContext);
   const { isAuthorized } = auth;
 
@@ -17,8 +17,16 @@ export const Headphone = ({ name, brand, reviews, codecs }) => {
     <section>
       <h2>{name}</h2>
       <h3>Brand - {brand}</h3>
-      {reviews.length ? <Reviews reviews={reviews} /> : <div>empty review</div>}
-      {codecs.length ? <Codecs codecs={codecs} /> : <div>empty codecs</div>}
+      {reviewsIds.length ? (
+        <Reviews reviews={reviewsIds} />
+      ) : (
+        <div>empty review</div>
+      )}
+      {codecsIds.length ? (
+        <Codecs codecs={codecsIds} />
+      ) : (
+        <div>empty codecs</div>
+      )}
       {isAuthorized && (
         <>
           <HeadphoneCounter />
