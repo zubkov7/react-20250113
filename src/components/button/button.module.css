@@ -1,5 +1,4 @@
 .root {
-    background-color: lightsalmon;
     box-shadow: none;
     border: none;
     cursor: pointer;
@@ -17,4 +16,12 @@
 .size400 {
     font-size: 16px;
     padding: 7px 14px;
+}
+
+.light {
+    background-color: lightsalmon;
+}
+
+.dark {
+    background-color: lightsteelblue;
 }
