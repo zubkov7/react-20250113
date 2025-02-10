@@ -18,12 +18,12 @@ export const Headphone = ({ name, brand, reviewsIds, codecsIds }) => {
       <h2>{name}</h2>
       <h3>Brand - {brand}</h3>
       {reviewsIds.length ? (
-        <Reviews reviews={reviewsIds} />
+        <Reviews reviewsIds={reviewsIds} />
       ) : (
         <div>empty review</div>
       )}
       {codecsIds.length ? (
-        <Codecs codecs={codecsIds} />
+        <Codecs codecsIds={codecsIds} />
       ) : (
         <div>empty codecs</div>
       )}

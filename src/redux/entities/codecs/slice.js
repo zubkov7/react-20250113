@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { normalizedCodecs } from "../../../../constants/normalized-mock";
+import { normalizedCodecs } from "../../../constants/normalized-mock";
 
 const initialState = {
   ids: normalizedCodecs.map(({ id }) => id),
@@ -13,4 +13,7 @@ const initialState = {
 export const codecsSlice = createSlice({
   name: "codecs",
   initialState,
+  selectors: { selectCodecById: (state, id) => state.entities[id] },
 });
+
+export const { selectCodecById } = codecsSlice.selectors;

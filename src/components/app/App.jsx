@@ -6,7 +6,7 @@ import "./app.css";
 import { ThemeContextProvider } from "../theme-context/theme-context";
 import { AuthContextProvider } from "../auth-context/auth-context";
 import { Provider } from "react-redux";
-import { store } from "../redux/store";
+import { store } from "../../redux/store";
 
 export const App = () => {
   return (

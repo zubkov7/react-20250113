@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { normalizedHeadphones } from "../../../../constants/normalized-mock";
+import { normalizedHeadphones } from "../../../constants/normalized-mock";
 
 const initialState = {
   ids: normalizedHeadphones.map(({ id }) => id),

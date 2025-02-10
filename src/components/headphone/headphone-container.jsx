@@ -1,5 +1,5 @@
 import { useSelector } from "react-redux";
-import { selectHeadphoneById } from "../redux/entities/headphones/slice";
+import { selectHeadphoneById } from "../../redux/entities/headphones/slice";
 import { Headphone } from "./headphone";
 
 export const HeadphoneContainer = ({ id }) => {
