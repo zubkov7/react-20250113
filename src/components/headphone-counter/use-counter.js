@@ -1,20 +1,29 @@
-import { useState, useCallback } from "react";
+import { useCallback } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  addToCart,
+  removeFromCart,
+  selectAmountByItemId,
+} from "../../redux/entities/cart/slice";
 
-export const useCount = ({ min = 0, max = 5 } = {}) => {
-  const [value, setValue] = useState(min);
+export const useCount = (headphoneId) => {
+  const dispatch = useDispatch();
+
+  const amount =
+    useSelector((state) => selectAmountByItemId(state, headphoneId)) || 0;
 
   const increment = useCallback(
-    () => setValue((prevValue) => Math.min(prevValue + 1, max)),
-    [max]
+    () => dispatch(addToCart(headphoneId)),
+    [headphoneId, dispatch]
   );
 
   const decrement = useCallback(
-    () => setValue((prevValue) => Math.max(prevValue - 1, min)),
-    [min]
+    () => dispatch(removeFromCart(headphoneId)),
+    [headphoneId, dispatch]
   );
 
   return {
-    value,
+    amount,
     increment,
     decrement,
   };

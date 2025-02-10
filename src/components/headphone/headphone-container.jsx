@@ -13,6 +13,7 @@ export const HeadphoneContainer = ({ id }) => {
       brand={brand}
       reviewsIds={reviews}
       codecsIds={codecs}
+      id={id}
     />
   );
 };
