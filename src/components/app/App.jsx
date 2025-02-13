@@ -10,6 +10,8 @@ import { store } from "../../redux/store";
 import { BrowserRouter, Navigate, Route, Routes } from "react-router";
 import { HomePage } from "../../pages/home-page";
 import { HeadphonePage } from "../../pages/headphone-page";
+import { HeadphoneReviewsPage } from "../../pages/headphone-reviews-page";
+import { HeadphoneCodecsPage } from "../../pages/headphone-codecs-page";
 
 export const App = () => {
   return (
@@ -22,7 +24,11 @@ export const App = () => {
                 <Route index element={<HomePage />} />
                 <Route path='/headphones' element={<HeadphonesPage />}>
                   <Route index element={<div>Choose headphone</div>} />
-                  <Route path=':headphoneId' element={<HeadphonePage />} />
+                  <Route path=':headphoneId' element={<HeadphonePage />}>
+                    <Route index element={<Navigate to='reviews' />} />
+                    <Route path='reviews' element={<HeadphoneReviewsPage />} />
+                    <Route path='codecs' element={<HeadphoneCodecsPage />} />
+                  </Route>
                 </Route>
                 <Route path='/about' element={<div>about page</div>} />
                 <Route path='/blocked' element={<Navigate to='/' />} />

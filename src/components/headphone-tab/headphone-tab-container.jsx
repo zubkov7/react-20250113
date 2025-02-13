@@ -1,7 +1,6 @@
 import { useSelector } from "react-redux";
 import { selectHeadphoneById } from "../../redux/entities/headphones/slice";
-import { Button } from "../button/button";
-import { NavLink } from "react-router";
+import { TabLink } from "../tab-link/tab-link";
 
 export const HeadphoneTabContainer = ({ id }) => {
   const headhpone = useSelector((state) => selectHeadphoneById(state, id));
@@ -10,14 +9,5 @@ export const HeadphoneTabContainer = ({ id }) => {
     return;
   }
 
-  return (
-    <NavLink
-      to={`/headphones/${id}`}
-      // className={({ isActive }) =>
-      //   isActive ? "someActiveClass" : "someInactiveClass"
-      // }
-    >
-      {({ isActive }) => <Button title={headhpone.name} disabled={isActive} />}
-    </NavLink>
-  );
+  return <TabLink to={`/headphones/${id}`}>{headhpone.name}</TabLink>;
 };
