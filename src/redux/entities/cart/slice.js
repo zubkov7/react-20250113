@@ -5,13 +5,6 @@ export const cartSlice = createSlice({
   initialState: {},
   reducers: {
     addToCart: (state, { payload }) => {
-      //   const current = state[payload] || 0;
-
-      //   return {
-      //     ...state,
-      //     [payload]: current + 1,
-      //   };
-
       state[payload] = (state[payload] || 0) + 1;
     },
     removeFromCart: (state, { payload }) => {

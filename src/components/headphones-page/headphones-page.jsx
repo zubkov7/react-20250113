@@ -1,11 +1,35 @@
 import { Tabs } from "../tabs/tabs";
-import { useSelector } from "react-redux";
-import { selectHeadphonesIds } from "../../redux/entities/headphones/slice";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  selectGetHeadphonesRequestStatus,
+  selectHeadphonesIds,
+} from "../../redux/entities/headphones/slice";
 import { HeadphoneTabContainer } from "../headphone-tab/headphone-tab-container";
 import { Outlet } from "react-router";
+import { getHeadphones } from "../../redux/entities/headphones/get-headphones";
+import { useEffect } from "react";
+import {
+  REQUEST_STATUS_PENDING,
+  REQUEST_STATUS_REJECTED,
+} from "../../redux/constants";
 
 export const HeadphonesPage = () => {
+  const dispatch = useDispatch();
+
   const headphonesIds = useSelector(selectHeadphonesIds);
+  const requestStatus = useSelector(selectGetHeadphonesRequestStatus);
+
+  useEffect(() => {
+    dispatch(getHeadphones());
+  }, [dispatch]);
+
+  if (requestStatus === REQUEST_STATUS_PENDING || !headphonesIds?.length) {
+    return "loading...";
+  }
+
+  if (requestStatus === REQUEST_STATUS_REJECTED) {
+    return "ERROR";
+  }
 
   return (
     <div>
