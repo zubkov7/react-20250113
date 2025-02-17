@@ -1,25 +1,21 @@
 import { Tabs } from "../tabs/tabs";
-import { useSelector } from "react-redux";
-import { selectHeadphonesIds } from "../../redux/entities/headphones/slice";
-import { HeadphoneTabContainer } from "../headphone-tab/headphone-tab-container";
 import { Outlet } from "react-router";
-import { getHeadphones } from "../../redux/entities/headphones/get-headphones";
-import {
-  REQUEST_STATUS_PENDING,
-  REQUEST_STATUS_REJECTED,
-} from "../../redux/constants";
-import { useRequest } from "../../redux/entities/hooks/use-request";
+import { useGetHeadphonesQuery } from "../../redux/services/api/api";
+import { TabLink } from "../tab-link/tab-link";
 
 export const HeadphonesPage = () => {
-  const headphonesIds = useSelector(selectHeadphonesIds);
-  const requestStatus = useRequest(getHeadphones);
+  const { data, isLoading, isError } = useGetHeadphonesQuery();
 
-  if (requestStatus === REQUEST_STATUS_PENDING || !headphonesIds?.length) {
+  if (isLoading) {
     return "loading...";
   }
 
-  if (requestStatus === REQUEST_STATUS_REJECTED) {
+  if (isError) {
     return "ERROR";
+  }
+
+  if (!data?.length) {
+    return null;
   }
 
   return (
@@ -27,8 +23,10 @@ export const HeadphonesPage = () => {
       <h1>Headphones Page</h1>
 
       <Tabs>
-        {headphonesIds.map((id) => (
-          <HeadphoneTabContainer key={id} id={id} />
+        {data.map(({ id, name }) => (
+          <TabLink key={id} to={`/headphones/${id}`}>
+            {name}
+          </TabLink>
         ))}
       </Tabs>
 

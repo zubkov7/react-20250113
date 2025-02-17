@@ -4,5 +4,5 @@ import { HeadphoneContainer } from "../components/headphone/headphone-container"
 export const HeadphonePage = () => {
   const { headphoneId } = useParams();
 
-  return <HeadphoneContainer id={headphoneId} />;
+  return <HeadphoneContainer headphoneId={headphoneId} />;
 };
