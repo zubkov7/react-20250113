@@ -12,9 +12,5 @@ export const AuthContextProvider = ({ children }) => {
     });
   };
 
-  return (
-    <AuthContext.Provider value={{ auth, toggleAuth }}>
-      {children}
-    </AuthContext.Provider>
-  );
+  return <AuthContext value={{ auth, toggleAuth }}>{children}</AuthContext>;
 };

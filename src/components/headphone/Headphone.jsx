@@ -1,14 +1,10 @@
-import { ReviewForm } from "../review-form/review-form";
-import { HeadphoneCounter } from "../headphone-counter/headphone-counter";
 import { use } from "react";
-import { AuthContext } from "../auth-context";
-import { Tabs } from "../tabs/tabs";
+import { HeadphoneCounter } from "../headphone-counter/headphone-counter";
 import { TabLink } from "../tab-link/tab-link";
-import { Outlet } from "react-router";
+import { AuthContext } from "../auth-context";
 
-export const Headphone = ({ name, brand, id, addReview, addReviewLoading }) => {
+export const Headphone = ({ name, brand, id }) => {
   const { auth } = use(AuthContext);
-  const { isAuthorized } = auth;
 
   if (!name) {
     return null;
@@ -17,20 +13,11 @@ export const Headphone = ({ name, brand, id, addReview, addReviewLoading }) => {
   return (
     <section>
       <h2>{name}</h2>
-      <h3>Brand - {brand}</h3>
-      <Tabs>
-        <TabLink to='reviews'>Reviews</TabLink>
-        <TabLink to='codecs'>Codecs</TabLink>
-      </Tabs>
-
-      <Outlet />
-
-      {isAuthorized && (
-        <>
-          <HeadphoneCounter headphoneId={id} />
-          <ReviewForm onSubmit={addReview} disableSubmit={addReviewLoading} />
-        </>
-      )}
+      <h3>Brand</h3>
+      <div>{brand}</div>
+      {auth.isAuthorized && <HeadphoneCounter id={id} />}
+      <TabLink to='reviews' title='Reviews' />
+      <TabLink to='codecs' title='Codecs' />
     </section>
   );
 };

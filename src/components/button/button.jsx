@@ -1,29 +1,27 @@
 import classNames from "classnames";
 import styles from "./button.module.css";
-import { use } from "react";
 import { ThemeContext } from "../theme-context";
+import { use } from "react";
 
 export const Button = ({
-  title,
+  children,
   onClick,
-  disabled,
-  size = "500",
   className,
+  viewVariant = "default",
 }) => {
-  const { theme } = use(ThemeContext);
+  const { value } = use(ThemeContext);
 
   return (
     <button
       className={classNames(styles.root, className, {
-        [styles.size500]: size === "500",
-        [styles.size400]: size === "400",
-        [styles.dark]: theme === "dark",
-        [styles.light]: theme === "light",
+        [styles.default]: viewVariant === "default",
+        [styles.big]: viewVariant === "big",
+        [styles.dark]: value === "dark",
+        [styles.light]: value === "light",
       })}
-      disabled={disabled}
       onClick={onClick}
     >
-      {title}
+      {children}
     </button>
   );
 };

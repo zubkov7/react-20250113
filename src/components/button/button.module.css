@@ -1,27 +1,21 @@
 .root {
-    box-shadow: none;
-    border: none;
-    cursor: pointer;
-
-    &:hover {
-        opacity: 0.9;
-    }
+    padding: 10px;
 }
 
-.size500 {
-    font-size: 18px;
-    padding: 8px 16px;
+.default {
+    font-size: 20px;
 }
 
-.size400 {
-    font-size: 16px;
-    padding: 7px 14px;
-}
-
-.light {
-    background-color: lightsalmon;
+.big {
+    font-size: 30px;
 }
 
 .dark {
-    background-color: lightsteelblue;
+    background-color: black;
+    color: white;
+}
+
+.light {
+    background-color: white;
+    color: black;
 }

@@ -17,17 +17,25 @@ export const cartSlice = createSlice({
       if (state[payload] <= 0) {
         delete state[payload];
       }
+
+      return state;
     },
   },
   selectors: {
-    selectAmountByItemId: (state, id) => state[id],
+    selectCartItemAmountById: (state, id) => state[id],
   },
 });
 
-export const { selectAmountByItemId } = cartSlice.selectors;
+export const { selectCartItemAmountById } = cartSlice.selectors;
+
 export const { addToCart, removeFromCart } = cartSlice.actions;
 
-const selectCartSlice = (state) => state.cart;
-export const selectCartItemsIds = createSelector([selectCartSlice], (cart) =>
-  Object.keys(cart)
+export const selectCartSlice = (state) => state.cart;
+
+export const selectCartItems = createSelector([selectCartSlice], (cartState) =>
+  Object.keys(cartState).reduce((acc, id) => {
+    acc.push({ id, amount: cartState[id] });
+
+    return acc;
+  }, [])
 );

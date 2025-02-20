@@ -23,6 +23,12 @@ export const apiSlice = createApi({
       }),
       invalidatesTags: [{ type: "reviews", id: "ALL" }],
     }),
+    getUsers: builder.query({
+      query: () => "/users",
+    }),
+    getCodecsByHeadphoneId: builder.query({
+      query: (headphoneId) => `/codecs?productId=${headphoneId}`,
+    }),
   }),
 });
 
@@ -32,4 +38,6 @@ export const {
   useGetHeadphoneByIdQuery,
   useGetReviewsByHeadphoneIdQuery,
   useAddReviewMutation,
+  useGetUsersQuery,
+  useGetCodecsByHeadphoneIdQuery,
 } = apiSlice;

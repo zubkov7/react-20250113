@@ -1,8 +1,8 @@
 import { useParams } from "react-router";
-import { Reviews } from "../components/reviews/reviews";
+import { ReviewsContainer } from "../components/reviews/reviews-container";
 
 export const HeadphoneReviewsPage = () => {
   const { headphoneId } = useParams();
 
-  return <Reviews headphoneId={headphoneId} />;
+  return <ReviewsContainer headphoneId={headphoneId} />;
 };

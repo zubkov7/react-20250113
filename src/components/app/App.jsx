@@ -1,17 +1,16 @@
-import { HeadphonesPage } from "../headphones-page/headphones-page";
 import { Layout } from "../layout/layout";
-
-import "./reset.css";
-import "./app.css";
 import { ThemeContextProvider } from "../theme-context/theme-context";
 import { AuthContextProvider } from "../auth-context/auth-context";
 import { Provider } from "react-redux";
 import { store } from "../../redux/store";
-import { BrowserRouter, Navigate, Route, Routes } from "react-router";
 import { HomePage } from "../../pages/home-page";
-import { HeadphonePage } from "../../pages/headphone-page";
 import { HeadphoneReviewsPage } from "../../pages/headphone-reviews-page";
 import { HeadphoneCodecsPage } from "../../pages/headphone-codecs-page";
+import { HeadphonePage } from "../../pages/headphone-page";
+import { HeadphonesPage } from "../../pages/headphones-page";
+import { BrowserRouter, Navigate, Route, Routes } from "react-router";
+
+import "./app.css";
 
 export const App = () => {
   return (

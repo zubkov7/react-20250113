@@ -1,7 +1,18 @@
-.progress {
+.progressBar {
     position: fixed;
     top: 0;
     left: 0;
-    height: 5px;
-    background-color: green;
+    height: 10px;
+}
+
+.default {
+    background: red;
+}
+
+.colored {
+    background: green;
+}
+
+.light {
+    background: yellow;
 }

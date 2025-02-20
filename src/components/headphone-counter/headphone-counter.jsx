@@ -1,8 +1,23 @@
+import { useDispatch, useSelector } from "react-redux";
 import { Counter } from "../counter/counter";
-import { useCount } from "./use-counter";
+import {
+  addToCart,
+  removeFromCart,
+  selectCartItemAmountById,
+} from "../../redux/entities/cart/slice";
 
-export const HeadphoneCounter = ({ headphoneId }) => {
-  const { amount, increment, decrement } = useCount(headphoneId);
+export const HeadphoneCounter = ({ id }) => {
+  const dispatch = useDispatch();
 
-  return <Counter value={amount} increment={increment} decrement={decrement} />;
+  const amount =
+    useSelector((state) => selectCartItemAmountById(state, id)) || 0;
+
+  const increment = () => dispatch(addToCart(id));
+  const decrement = () => dispatch(removeFromCart(id));
+
+  return (
+    <div>
+      <Counter value={amount} increment={increment} decrement={decrement} />
+    </div>
+  );
 };

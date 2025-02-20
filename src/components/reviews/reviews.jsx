@@ -1,41 +1,22 @@
-import { useRequest } from "../../redux/entities/hooks/use-request";
-import { getUsers } from "../../redux/entities/users/get-users";
-import {
-  REQUEST_STATUS_PENDING,
-  REQUEST_STATUS_REJECTED,
-} from "../../redux/constants";
-import { useGetReviewsByHeadphoneIdQuery } from "../../redux/services/api/api";
+import { use } from "react";
+import { ReviewForm } from "../review-form/review-form";
 import { Review } from "../review/review";
+import { AuthContext } from "../auth-context";
 
-export const Reviews = ({ headphoneId }) => {
-  const usersRequestStatus = useRequest(getUsers);
-  const {
-    data: reviewsData,
-    isLoading: reviewsIsLoading,
-    isError: reviewsIsError,
-  } = useGetReviewsByHeadphoneIdQuery(headphoneId);
-  const isLoading =
-    usersRequestStatus === REQUEST_STATUS_PENDING || reviewsIsLoading;
-
-  const isError =
-    usersRequestStatus === REQUEST_STATUS_REJECTED || reviewsIsError;
-
-  if (isLoading) {
-    return "loading...";
-  }
-
-  if (isError) {
-    return "ERROR";
-  }
+export const Reviews = ({ reviews, onAddReview }) => {
+  const { auth } = use(AuthContext);
 
   return (
     <div>
       <h3>Reviews</h3>
-      {reviewsData?.map(({ id, text, user }) => (
-        <li key={id}>
-          <Review text={text} userId={user} />
-        </li>
-      ))}
+      <ul>
+        {reviews.map(({ id, text, user }) => (
+          <li key={id}>
+            <Review text={text} userId={user} />
+          </li>
+        ))}
+      </ul>
+      {auth.isAuthorized && <ReviewForm onSubmit={onAddReview} />}
     </div>
   );
 };
