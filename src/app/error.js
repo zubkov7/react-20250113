@@ -1,7 +1,7 @@
 "use client";
 
-const Error = () => {
-  return "some error";
+const RootError = () => {
+  return "root error";
 };
 
-export default Error;
+export default RootError;

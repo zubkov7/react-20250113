@@ -1,5 +1,3 @@
-const RootPage = () => {
-  return "home page";
-};
+import { HomePage } from "../components/pages/home-page";
 
-export default RootPage;
+export default HomePage;

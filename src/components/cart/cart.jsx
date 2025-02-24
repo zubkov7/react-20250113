@@ -1,11 +1,19 @@
+"use client";
+
 import { useSelector } from "react-redux";
 import { CartItem } from "../cart-item/cart-item";
 import { selectCartItems } from "../../redux/entities/cart/slice";
+import { AuthContext } from "../auth-context";
+import { use } from "react";
 
-export const Cart = () => {
+export const Cart = ({ headphones }) => {
   const items = useSelector(selectCartItems);
 
-  if (!items.length) {
+  const { auth } = use(AuthContext);
+
+  const { isAuthorized } = auth;
+
+  if (!items.length || !isAuthorized) {
     return null;
   }
 
@@ -15,7 +23,7 @@ export const Cart = () => {
       <ul>
         {items.map(({ id }) => (
           <li key={id}>
-            <CartItem id={id} />
+            <CartItem id={id} headphones={headphones} />
           </li>
         ))}
       </ul>

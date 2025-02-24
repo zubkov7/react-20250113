@@ -1,13 +1,12 @@
-import { useGetHeadphonesQuery } from "../../redux/services/api/api";
+import { getHeadphones } from "../../services/get-headphones";
 import { Headphone } from "./headphone";
 
-export const HeadphoneContainer = ({ id }) => {
-const { data: headphone } = useGetHeadphonesQuery(undefined, {
-    selectFromResult: (result) => ({
-      ...result,
-      data: result?.data?.find(({ id: headphoneId }) => headphoneId === id),
-    }),
-  });
+export const HeadphoneContainer = async ({ id }) => {
+  const headphones = await getHeadphones();
+
+  const headphone = headphones.find(
+    ({ id: headphoneId }) => headphoneId === id
+  );
 
   if (!headphone) {
     return null;

@@ -1,22 +1,15 @@
-import { AuthContext } from "../auth-context";
-import { Cart } from "../cart/cart";
+import { CartContainer } from "../cart/cart-container";
 import { Footer } from "../footer/footer";
 import { Header } from "../header/header";
 import { ProgressBar } from "../progress-bar/progress-bar";
-import { use } from "react";
-import { Outlet } from "react-router";
 
-export const Layout = () => {
-  const { auth } = use(AuthContext);
-
-  const { isAuthorized } = auth;
-
+export const Layout = ({ children }) => {
   return (
     <div>
       <ProgressBar viewVariant='colored' />
       <Header />
-      <Outlet />
-      {isAuthorized && <Cart />}
+      {children}
+      <CartContainer />
       <Footer />
     </div>
   );

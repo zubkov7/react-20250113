@@ -1,25 +1,32 @@
+import { Layout } from "../components/layout/layout";
+import { ThemeContextProvider } from "../components/theme-context/theme-context";
+import { AuthContextProvider } from "../components/auth-context/auth-context";
+
+import "../styles/app.css";
+import { ReduxProvider } from "../redux/provider";
+
 export const metadata = {
-  title: "Headphones Shop",
+  title: "Heaphones Shop",
   description: "next js app",
 };
 
-const RootLayout = ({ children }) => {
+export default function RootLayout({ children }) {
   return (
     <html lang='en'>
       <head>
         <link rel='icon' type='image/svg+xml' href='/vite.svg' />
-        <link rel='preconnect' href='https://fonts.googleapis.com' />
-        <link rel='preconnect' href='https://fonts.gstatic.com' />
-        <link
-          href='https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap'
-          rel='stylesheet'
-        />
       </head>
       <body>
-        <div id='root'>{children}</div>
+        <div id='root'>
+          <ReduxProvider>
+            <ThemeContextProvider>
+              <AuthContextProvider>
+                <Layout>{children}</Layout>
+              </AuthContextProvider>
+            </ThemeContextProvider>
+          </ReduxProvider>
+        </div>
       </body>
     </html>
   );
-};
-
-export default RootLayout;
+}

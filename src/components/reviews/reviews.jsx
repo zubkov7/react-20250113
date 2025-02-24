@@ -16,7 +16,7 @@ export const Reviews = ({ reviews, onAddReview }) => {
           </li>
         ))}
       </ul>
-      {auth.isAuthorized && <ReviewForm onSubmit={onAddReview} />}
+      {auth.isAuthorized && <ReviewForm submitFormAction={onAddReview} />}
     </div>
   );
 };

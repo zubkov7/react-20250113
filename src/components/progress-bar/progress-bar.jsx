@@ -1,9 +1,11 @@
+"use client";
+
 import { useProgress } from "./use-progress";
 
 import styles from "./progress-bar.module.css";
 import classNames from "classnames";
-import { use } from "react";
 import { ThemeContext } from "../theme-context";
+import { use } from "react";
 
 export const ProgressBar = ({ viewVariant = "default" }) => {
   const progress = useProgress();

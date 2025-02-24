@@ -1,16 +1,12 @@
-import { useGetCodecsByHeadphoneIdQuery } from "../../redux/services/api/api";
 import { Codecs } from "./codecs";
+import { getCodecsByHeadphoneId } from "../../services/get-codecs-by-headphone-id";
 
-export const CodecsContainer = ({ headphoneId }) => {
-  const { data, isLoading } = useGetCodecsByHeadphoneIdQuery(headphoneId);
+export const CodecsContainer = async ({ headphoneId }) => {
+  const codecs = await getCodecsByHeadphoneId(headphoneId);
 
-  if (isLoading) {
-    return "...loading";
-  }
-
-  if (!data.length) {
+  if (!codecs.length) {
     return null;
   }
 
-  return <Codecs codecs={data} />;
+  return <Codecs codecs={codecs} />;
 };
